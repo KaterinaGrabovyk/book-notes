@@ -1,22 +1,27 @@
 <%-include("partials/header.ejs") %>
-<h1>Katy`s book notes</h1>
-<div class="sort">
-  <h3>Sort by:</h3>
-  <form action="/rating" method="get"><a href="">rating</a></form>
-  <form action="/recency" method="get"><a href="">recency</a></form>
+<div class="header">
+  <h1>Katy`s book notes</h1>
+  <div class="sort">
+    <h3>Sort by:</h3>
+    <form action="/rating" method="get"><a href="">rating</a></form>
+    <form action="/recency" method="get"><a href="">recency</a></form>
+  </div>
+  <form action="/add" method="get"><button type="submit">Add new</button></form>
 </div>
-<form action="/add" method="get"><button type="submit">Add new</button></form>
 <div class="books">
-<% if (locals.books) {%>
-    <% books.forEach(book => {%>
-        <div class="book-div" id="<%= book.id %>">
-            <h3><%= book.title %></h3>
-            <h3><%= book.author %></h3>
-            <h3><%= book.note %></h3>
-        </div>
-        <%}); %>
-    <%} else {%>
-        <h1>no books</h1>
-        <% } %>
+  <% if (locals.books) {%> <% books.forEach(book => {%>
+  <div class="book-div" id="<%= book.id %>">
+    <img class="cover" src="<%= book.cover %>" alt="<%= book.title %> cover">
+    <div class="content">
+      <h3><%= book.title %></h3>
+      <h3><%= book.author %></h3>
+      <h3><%= book.rating %></h3>
+      <h3><%= book.notedate.toLocaleDateString('uk-UA'); %></h3>
+    </div>
+  </div>
+  <%}); %> <%} else {%>
+  <h1>no books</h1>
+  <% } %>
 </div>
+
 <!-- <%-include("partials/footer.ejs") %> -->

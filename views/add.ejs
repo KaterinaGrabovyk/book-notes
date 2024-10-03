@@ -19,6 +19,19 @@
       max="100"
       required
     />
+    <div>
+      <div>
+        <h3>Rating</h3>
+        <input class="rating" type="number" name="rating" max="10" required />
+      </div>
+      <div>
+        <h3>ISBN</h3>
+        <input class="isbn" type="number" name="isbn" required />
+        <% if(locals.errorISBN) {%>
+        <span style="color: red;"><%= errorISBN %></span>
+        <% } %>
+      </div>
+    </div>
     <textarea
       class="text"
       type="text"
