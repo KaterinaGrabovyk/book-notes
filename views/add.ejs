@@ -1,0 +1,31 @@
+<%-include("partials/header.ejs") %>
+<div class="addForm">
+  <form action="/add" method="post">
+    <h3>Book title</h3>
+    <input
+      class="title"
+      type="text"
+      name="title"
+      placeholder="title"
+      max="100"
+      required
+    />
+    <h3>Book author</h3>
+    <input
+      class="author"
+      type="text"
+      name="author"
+      placeholder="author"
+      max="100"
+      required
+    />
+    <textarea
+      class="text"
+      type="text"
+      name="note"
+      placeholder="note..."
+      required
+    ></textarea>
+    <button type="submit">Ok</button>
+  </form>
+</div>
