@@ -3,22 +3,44 @@
   <h1>Katy`s book notes</h1>
   <div class="sort">
     <h3>Sort by:</h3>
-    <form action="/rating" method="get"><a href="">rating</a></form>
-    <form action="/recency" method="get"><a href="">recency</a></form>
+    <form action="/" method="POST">
+      <button type="submit" name="sort" value="rating">Sort by Rating</button>,
+      <button type="submit" name="sort" value="recency">Sort by Recency</button
+      >,
+      <button type="submit" name="sort" value="common">Default Sort</button>
+    </form>
   </div>
   <form action="/add" method="get"><button type="submit">Add new</button></form>
 </div>
 <div class="books">
   <% if (locals.books) {%> <% books.forEach(book => {%>
   <div class="book-div" id="<%= book.id %>">
-    <img class="cover" src="<%= book.cover %>" alt="<%= book.title %> cover">
+    <a href="/<%= book.id %><%= book.title %>">
+      <img
+        class="cover"
+        src="<%= book.cover %>"
+        alt="<%= book.title %> cover"
+      />
+    </a>
     <div class="content">
       <h3><%= book.title %></h3>
       <h3><%= book.author %></h3>
-      <h3><%= book.rating %></h3>
+      <h3>My rating: <%= book.rating %>/10</h3>
       <h3><%= book.notedate.toLocaleDateString('uk-UA'); %></h3>
+      <button onclick="confirmDeletion('<%= book.id %>')">Delete</button>
     </div>
   </div>
+
+  <script>
+    function confirmDeletion(postId) {
+      if (confirm("Do you really want to delete this post?")) {
+        window.location.href = `/delete/${postId}`;
+      } else {
+        console.log("Post deletion was cancelled.");
+        window.location.href = "/";
+      }
+    }
+  </script>
   <%}); %> <%} else {%>
   <h1>no books</h1>
   <% } %>

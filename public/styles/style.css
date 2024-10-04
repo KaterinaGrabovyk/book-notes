@@ -11,8 +11,6 @@ body {
   border: 1px solid;
   margin: 50px 0;
 }
-h1 {
-}
 .sort {
   display: flex;
   gap: 20px;

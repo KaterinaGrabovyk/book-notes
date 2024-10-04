@@ -20,7 +20,7 @@ db.connect();
 
 app.get("/", async (req, res) => {
   try {
-    const books = await db.query("SELECT * FROM booknotes ORDER BY id ASC");
+    const books = await db.query(`SELECT * FROM booknotes ORDER BY id ASC`);
     const all = books.rows;
     res.render("index.ejs", {
       books: all,
@@ -29,11 +29,33 @@ app.get("/", async (req, res) => {
     console.log(err);
   }
 });
+//sorting
+app.post("/", async (req, res) => {
+  try {
+    const sort = req.body.sort;
+    let query;
 
+    if (sort === "rating") {
+      query = "SELECT * FROM booknotes ORDER BY rating DESC";
+    } else if (sort === "recency") {
+      query = "SELECT * FROM booknotes ORDER BY notedate DESC";
+    } else {
+      query = "SELECT * FROM booknotes ORDER BY id ASC";
+    }
+    const books = await db.query(query);
+    const all = books.rows;
+    res.render("index.ejs", {
+      books: all,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+//gets add page
 app.get("/add", async (req, res) => {
   res.render("add.ejs");
 });
-
+//functions for handling ISBN codes
 function isValidISBN10(isbn) {
   let sum = 0;
   for (let i = 0; i < 9; i++) {
@@ -62,7 +84,7 @@ function isValidISBN(isbn) {
   }
   return false;
 }
-
+//Adds new book review
 app.post("/add", async (req, res) => {
   try {
     if (!isValidISBN(req.body.isbn)) {
@@ -75,7 +97,7 @@ app.post("/add", async (req, res) => {
     );
     console.log(cover.data.url);
     await db.query(
-      "INSERT INTO booknotes (title,author,notedate,note,rating,isbn,cover) VALUES ($1,$2,NOW(),$3,$4,$5,$6)",
+      "INSERT INTO booknotes (title,author,notedate,note,rating,isbn,cover,updated) VALUES ($1,$2,NOW(),$3,$4,$5,$6,NOW())",
       [
         req.body.title,
         req.body.author,
@@ -90,7 +112,30 @@ app.post("/add", async (req, res) => {
     console.log(err);
   }
 });
-
+//Deletes
+app.post("/delete/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    await db.query(`DELETE FROM booknotes WHERE id=${id}`);
+    console.log("element was deleted.");
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
+});
+//look at post
+app.get("/:id:title", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const books = await db.query(`SELECT * FROM booknotes WHERE id=${id}`);
+    const all = books.rows;
+    res.render("book.ejs", {
+      book: all[0],
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

@@ -1,0 +1,19 @@
+<%-include("partials/header.ejs") %>
+<div class="book-div" id="<%= book.id %>">
+    <a href="/<%= book.id %><%= book.title %>">
+      <img
+        class="cover"
+        src="<%= book.cover %>"
+        alt="<%= book.title %> cover"
+      />
+    </a>
+    <div class="content">
+      <h3><%= book.title %></h3>
+      <h3><%= book.author %></h3>
+      <h3>My rating: <%= book.rating %>/10</h3>
+      <h3><%= book.notedate.toLocaleDateString('uk-UA'); %></h3>
+    </div>
+    <div class="reviw">
+        <p><%= book.note %></p>
+    </div>
+  </div>

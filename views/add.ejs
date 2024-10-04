@@ -1,4 +1,10 @@
 <%-include("partials/header.ejs") %>
+<button onclick="goBack()" class="prev-page">Go Back</button>
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
 <div class="addForm">
   <form action="/add" method="post">
     <h3>Book title</h3>
@@ -28,7 +34,7 @@
         <h3>ISBN</h3>
         <input class="isbn" type="number" name="isbn" required />
         <% if(locals.errorISBN) {%>
-        <span style="color: red;"><%= errorISBN %></span>
+        <span style="color: red"><%= errorISBN %></span>
         <% } %>
       </div>
     </div>
