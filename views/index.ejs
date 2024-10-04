@@ -27,7 +27,8 @@
       <h3><%= book.author %></h3>
       <h3>My rating: <%= book.rating %>/10</h3>
       <h3><%= book.notedate.toLocaleDateString('uk-UA'); %></h3>
-      <button onclick="confirmDeletion('<%= book.id %>')">Delete</button>
+      <button onclick="confirmDeletion('<%= book.id %>')" method="get">Delete</button>
+      <a href="/update/<%= book.id %>">Update</a>
     </div>
   </div>
 

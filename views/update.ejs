@@ -1,8 +1,6 @@
 <%-include("partials/header.ejs") %>
-<button class="prev-page"><a href="/">Go Back</a></button>
-
 <div class="addForm">
-  <form action="/add" method="post">
+  <form action="/update/<%= book.id%>" method="post">
     <h3>Book title</h3>
     <input
       class="title"
@@ -10,6 +8,7 @@
       name="title"
       placeholder="title"
       max="100"
+      value="<%= book.title %>"
       required
     />
     <h3>Book author</h3>
@@ -19,6 +18,7 @@
       name="author"
       placeholder="author"
       max="100"
+      value="<%= book.author %>"
       required
     />
     <div>
@@ -30,12 +30,19 @@
           name="rating"
           min="0"
           max="10"
+          value="<%= book.rating %>"
           required
         />
       </div>
       <div>
         <h3>ISBN</h3>
-        <input class="isbn" type="number" name="isbn" required />
+        <input
+          class="isbn"
+          type="number"
+          name="isbn"
+          value="<%= book.isbn %>"
+          required
+        />
         <% if(locals.errorISBN) {%>
         <span style="color: red"><%= errorISBN %></span>
         <% } %>
@@ -47,7 +54,9 @@
       name="note"
       placeholder="note..."
       required
-    ></textarea>
+    >
+<%= book.note%></textarea
+    >
     <button type="submit">Ok</button>
   </form>
 </div>
