@@ -143,7 +143,7 @@ app.get("/delete/:id", async (req, res) => {
   }
 });
 //look at post
-app.get("/:id:title", async (req, res) => {
+app.get("/:id/:title", async (req, res) => {
   try {
     const id = req.params.id;
     const books = await db.query(`SELECT * FROM booknotes WHERE id=${id}`);

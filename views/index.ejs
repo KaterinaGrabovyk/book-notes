@@ -10,25 +10,27 @@
       <button type="submit" name="sort" value="common">Default Sort</button>
     </form>
   </div>
-  <form action="/add" method="get"><button type="submit">Add new</button></form>
+  <form action="/add" method="get" id="add"><button type="submit">Add new</button></form>
 </div>
 <div class="books">
   <% if (locals.books) {%> <% books.forEach(book => {%>
   <div class="book-div" id="<%= book.id %>">
-    <a href="/<%= book.id %><%= book.title %>">
-      <img
-        class="cover"
-        src="<%= book.cover %>"
-        alt="<%= book.title %> cover"
-      />
+    <a href="/<%= book.id %>/<%= book.title %>">
+      <img src="<%= book.cover %>" alt="<%= book.title %> cover" />
     </a>
     <div class="content">
-      <h3><%= book.title %></h3>
-      <h3><%= book.author %></h3>
-      <h3>My rating: <%= book.rating %>/10</h3>
-      <h3><%= book.notedate.toLocaleDateString('uk-UA'); %></h3>
-      <button onclick="confirmDeletion('<%= book.id %>')" method="get">Delete</button>
-      <a href="/update/<%= book.id %>">Update</a>
+      <h2>"<%= book.title %>"</h2>
+      <h3 class="author">by <%= book.author %></h3>
+      <h3 class="rating">My rating: <%= book.rating %>/10</h3>
+      <h3 class="date">
+        Note date: <%= book.notedate.toLocaleDateString('uk-UA'); %>
+      </h3>
+      <div class="buttons">
+        <a href="/update/<%= book.id %>">Update</a>
+        <button onclick="confirmDeletion('<%= book.id %>')" method="get">
+          Delete
+        </button>
+      </div>
     </div>
   </div>
 
@@ -46,5 +48,4 @@
   <h1>no books</h1>
   <% } %>
 </div>
-
-<!-- <%-include("partials/footer.ejs") %> -->
+<%-include("partials/footer.ejs") %>

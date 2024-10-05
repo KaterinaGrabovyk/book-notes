@@ -1,65 +1,216 @@
 * {
   padding: 0;
   margin: 0;
+  color: #fefae0;
+}
+.prev-page {
+  z-index: 3;
+  position: fixed;
+  background-color: inherit;
+  border: none;
+  top: 20px;
+  left: 20px;
+}
+.prev-page svg {
+  width: 40px;
+  height: 40px;
 }
 /* main */
 body {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2eed7;
+}
+main {
+  width: 60%;
+  margin-bottom: 20px;
 }
 .header {
-  border: 1px solid;
-  margin: 50px 0;
+  background-color: #798645;
+  padding: 20px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  position: sticky;
+  margin: 20px 0 50px 0;
+  top: 10px;
+}
+.header h1 {
+  font-size: 4rem;
+  text-align: center;
+}
+.header h3 {
+  font-size: 3rem;
 }
 .sort {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.sort button {
+  font-size: 1.4rem;
+  border: none;
+  background-color: inherit;
+}
+.sort button:hover {
+  cursor: pointer;
+  font-weight: 700;
+}
+.sort form {
+  display: flex;
+  gap: 10px;
+  font-size: 1.4rem;
+}
+.header form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header form button {
+  font-size: 1.4rem;
+  cursor: pointer;
+  border-radius: 20px;
+}
+#add button {
+  border: none;
+  background-color: #fefae0;
+  padding: 10px;
+  color: #798645;
 }
 .books {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 30px;
 }
 /* book card */
 .book-div {
-  width: 400px;
-  height: 200px;
-  border: 1px solid black;
+  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='69.282' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(240,6.7%,17.6%,1)'/><path d='M13.333-3.849v23.094M6.667-15.396l20 11.547M13.333-19.245l20 11.547M20 0v23.094m20-34.641l-6.667 3.849-6.666 3.849L20 0M0-11.547l6.667 3.849 6.666 3.849L20 0m0-23.094l20 11.547v23.094L20 23.094l-6.667-3.849-6.666-3.849L0 11.547v-23.094l6.667-3.849 6.666-3.849zM40-3.769L20 7.698m20-3.849l-16.253 9.384L20 15.396M6.667-7.698v23.094m6.666 50.037v23.094M6.667 53.886l20 11.547M13.333 50.037l20 11.547M20 69.282v23.094m20-34.641l-6.667 3.849-6.666 3.849L20 69.282M0 57.735l6.667 3.849 6.666 3.849L20 69.282m0-23.094l20 11.547v23.094L20 92.376l-6.667-3.849-6.666-3.849L0 80.829V57.735l6.667-3.849 6.666-3.849zm20 19.325L20 76.98m20-3.849L20 84.678M6.667 61.584v23.094m26.666-53.886v23.094m-6.666-34.641l20 11.547M33.333 15.396l20 11.547M40 34.641v23.094m20-34.641l-6.667 3.849-6.666 3.849L40 34.641M20 23.094l6.667 3.849 6.666 3.849L40 34.641m0-23.094l20 11.547v23.094L40 57.735l-6.667-3.849-6.666-3.849L20 46.188V23.094l6.667-3.849 6.666-3.849zm20 19.325L40 42.339m20-3.849L40 50.037M26.667 26.943v23.094M-6.667 30.792v23.094m-6.666-34.641l20 11.547M-6.667 15.396l20 11.547M0 34.641v23.094m20-34.641l-6.667 3.849-6.666 3.849L0 34.641m-20-11.547l6.667 3.849 6.666 3.849L0 34.641m0-23.094l20 11.547v23.094L0 57.735l-6.667-3.849-6.666-3.849L-20 46.188V23.094l6.667-3.849 6.666-3.849zm20 19.325L0 42.339m20-3.849L0 50.037m-13.333-23.094v23.094'  stroke-width='1' stroke='%23798645ff' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+  width: 900px;
+  border-radius: 10px;
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.content{
+.content {
+  background-color: #626f47;
   grid-area: 1/2/2/3;
-  margin-left: 20px;
+  padding-left: 20px;
+  padding-top: 30%;
+  margin-left: 10px;
 }
-img{
-  height: 200px;
-  width: 200px;
+.content h2,
+h3 {
+  margin-bottom: 10px;
+}
+h2 {
+  font-size: 3.4rem;
+}
+.author {
+  font-size: 2.2rem;
+}
+.rating {
+  font-size: 2.2rem;
+}
+.date {
+  font-style: italic;
+  font-size: 1.6rem;
+}
+img {
+  height: 100%;
+  width: 100%;
+}
+.buttons {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.buttons a,
+.buttons button {
+  font-size: 1.7rem;
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 10px 5px;
+  width: 100px;
+  cursor: pointer;
+  text-align: center;
+}
+.buttons a {
+  text-decoration: none;
+  border-color: #fefae0;
+  color: #fefae0;
+}
+.buttons button {
+  color: #626f47;
+}
+/* view book */
+.book-view {
+  padding: 70px;
+  border-radius: 20px;
+  background-color: #626f47;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  width: 90%;
+  height: 400px;
+  border-bottom: 2px dotted;
+}
+.book-view img {
+  margin-right: 30px;
+  float: left;
+  width: 300px;
+}
+.note p {
+  font-size: 3rem;
+  text-align: justify;
 }
 /* add card */
 .addForm {
-  width: 800px;
+  background-color: #626f47;
+  border: 1px solid;
+  text-align: center;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  margin-bottom: 40px;
+  font-size: 2rem;
 }
-.addForm div{
+.addForm form {
+  width: 80%;
+}
+.addForm div {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.addForm div div{
+.addForm div div {
   display: flex;
   flex-direction: column;
 }
-.title,
-.author,
-.text,
+input {
+  color: #626f47;
+  padding: 5px;
+  font-size: 1.6rem;
+  text-align: center;
+}
+.input-title,
+.input-author,
+.input-text,
 .addForm button {
   width: 100%;
 }
-.text {
+.input-text {
+  color: #626f47;
+  padding: 5px;
+  font-size: 1.6rem;
+  text-align: center;
   margin-top: 20px;
   height: 400px;
   margin-bottom: 20px;
@@ -68,22 +219,46 @@ img{
   margin-bottom: 10px;
   margin-top: 20px;
 }
+.addForm button {
+  font-weight: 700;
+  width: 500px;
+  height: 50px;
+  background-color: #7c8d3a;
+  border: none;
+  border-radius: 10px;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  transition-duration: 0.4s;
+}
+.addForm button:hover {
+  background-color: #9eb24b;
+}
 /* footer */
 footer {
-  height: 250px;
-  background-color: #116d6e;
+  width: 60%;
+  border-radius: 20px 20px 0 0;
+  height: 300px;
+  background-color: #798645;
   font-size: 3rem;
 }
+.container{
+  display: flex;
+  justify-content: center;
+}
+footer span{
+  color: #fefae0;
+}
 footer svg {
-  fill: #20cacd;
+  transition-duration: 0.4s;
+  fill: #fefae0;
   height: 50px;
   width: 50px;
   margin-left: 10px;
+  border-radius: 50%;
 }
 footer svg:hover {
   scale: 1.2;
   background-color: white;
-  border-radius: 50%;
 }
 .bi-github:hover {
   fill: #181717;

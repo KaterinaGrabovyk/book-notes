@@ -1,11 +1,22 @@
 <%-include("partials/header.ejs") %>
-<button class="prev-page"><a href="/">Go Back</a></button>
-
+<button class="prev-page">
+  <a href="/"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="#798645"
+      class="bi bi-house-door-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"
+      /></svg
+  ></a>
+</button>
 <div class="addForm">
   <form action="/add" method="post">
     <h3>Book title</h3>
     <input
-      class="title"
+      class="input-title"
       type="text"
       name="title"
       placeholder="title"
@@ -14,7 +25,7 @@
     />
     <h3>Book author</h3>
     <input
-      class="author"
+      class="input-author"
       type="text"
       name="author"
       placeholder="author"
@@ -25,24 +36,31 @@
       <div>
         <h3>Rating</h3>
         <input
-          class="rating"
+          class="input-rating"
           type="number"
           name="rating"
           min="0"
           max="10"
+          placeholder="n/10"
           required
         />
       </div>
       <div>
         <h3>ISBN</h3>
-        <input class="isbn" type="number" name="isbn" required />
+        <input
+          class="input-isbn"
+          type="number"
+          name="isbn"
+          placeholder="9786171511101"
+          required
+        />
         <% if(locals.errorISBN) {%>
         <span style="color: red"><%= errorISBN %></span>
         <% } %>
       </div>
     </div>
     <textarea
-      class="text"
+      class="input-text"
       type="text"
       name="note"
       placeholder="note..."
